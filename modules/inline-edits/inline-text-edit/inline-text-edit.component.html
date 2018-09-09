@@ -1,0 +1,43 @@
+﻿<div class="inline-text-edit inline-edit"
+     [ngClass]="{ 
+            'active': isEditIcon && !editing, 
+            'edit-mode': editing 
+         }">
+    <div *ngIf="text.errors && text.dirty">
+        <div class="field-error-text" *ngIf="text.errors.minlength">
+            Minimum length is {{minLength}}.
+        </div>
+        <div class="field-error-text" *ngIf="text.errors.maxlength">
+            Maximum length is {{maxLength}}.
+        </div>
+    </div>
+    <div (click)="edit(value)"
+         (mouseenter)="showEditIcon()"
+         (mouseleave)="hideEditIcon()"
+         class="text-field-wrapper">
+
+        <form #fText="ngForm">
+            <input 
+                matInput
+                [(ngModel)]="value" 
+                [(value)]="textValue" 
+                [(disabled)]="!editing"
+                name="textInput"
+                #text="ngModel"
+                [required]="required"
+                (onlyInteger)="validationDir"
+                minlength="{{minLength}}"
+                maxlength="{{maxLength}}"
+                autocomplete="off"
+                >
+        </form>
+
+        <div *ngIf="isEditIcon && !editing" class="edit-icon right">
+            <i class="icon-pencil-alt"></i>
+        </div>
+    </div>
+    <div class="control-button" *ngIf="editing">
+        <button class="tick-button primary-btn" mat-button [disabled]="fText.invalid" (click)="confirm($event)"><i class="icon-check2"></i></button>
+        <button class="cross-button secondary-btn" mat-button (click)="cancel()"><i class="icon-times"></i></button>
+    </div>
+</div>

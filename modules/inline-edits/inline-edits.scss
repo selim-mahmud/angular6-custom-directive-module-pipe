@@ -1,0 +1,163 @@
+﻿@import '_colors.scss';
+@import '_mixin.scss';
+@import '~foundation-sites/scss/foundation';
+
+//default colors
+$inline-bright-color: $crm-staff-dash-color !default;
+$inline-sel-active-bg: lighten($bg-color7, 7) !default;
+$inline-mat-sel-bg: $white !default;
+$inline-mat-sel-dis-bg: transparent !default;
+$inline-mat-sel-val: $crm-text-color1 !default;
+$inline-tarea-col: $crm-text-color1 !default;
+$inline-tarea-dis-bg: $white !default;
+$inline-tarea-dis-ac-bg: lighten($bg-color7, 7) !default;
+$inline-tarea-error-col: $crm-error-color !default;
+$inline-tarea-border: rem-calc(1px) solid $bg-color7 !default;
+
+.edit-icon {
+    position: absolute;
+    top: 0;
+
+    &.left {
+        left: rem-calc(5px);
+    }
+
+    &.right {
+        right: rem-calc(5px);
+    }
+}
+
+.control-button {
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    bottom: rem-calc(1px);
+    transform: translateY(100%);
+
+    .mat-button[disabled] {
+        &.tick-button {
+            background-color: lighten($inline-bright-color, 10);
+        }
+    }
+
+    button {
+        padding: rem-calc(2px) rem-calc(8px) rem-calc(3px) rem-calc(8px) !important;
+
+        &.tick-button {
+            min-width: rem-calc(30px);
+            border-radius: rem-calc(2px) 0 0 rem-calc(2px) !important;
+
+            i {
+                font-size: rem-calc(16px) !important;
+            }
+        }
+
+        &.cross-button {
+            min-width: rem-calc(30px);
+            border-radius: 0 rem-calc(2px) rem-calc(2px) 0 !important;
+
+            i {
+                font-size: rem-calc(16px) !important;
+            }
+        }
+    }
+}
+
+.inline-edit {
+    position: relative;
+}
+//style for inline select edit
+.inline-select-edit {
+
+    .select-field-wrapper {
+
+        &.active {
+        }
+
+        .mat-select {
+
+            &.mat-select-disabled {
+                background-color: $inline-mat-sel-dis-bg;
+            }
+
+            background-color: $inline-mat-sel-bg;
+        }
+    }
+
+    .mat-select-disabled {
+        .mat-select-arrow {
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+        }
+
+        .mat-select-value {
+            color: $inline-mat-sel-val;
+            padding-left: rem-calc(2px);
+        }
+    }
+}
+
+//style for inline text area edit
+.inline-textarea-edit {
+    .mat-input-element {
+        color: $inline-tarea-col;
+        min-height: rem-calc(25px);
+        padding-right: 25px !important;
+    }
+
+    .mat-input-element:disabled {
+        background-color: $inline-tarea-dis-bg;
+        border: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    &.active {
+        background-color: $inline-tarea-dis-ac-bg !important;
+    }
+
+    &.edit-mode {
+
+        .textarea-field-wrapper {
+            border: $inline-tarea-border;
+            padding: rem-calc(5px);
+        }
+
+        .mat-input-element {
+            font-size: .9rem;
+            overflow: hidden;
+        }
+    }
+}
+
+//style for inline text edit
+.inline-text-edit {
+
+    .mat-input-element {
+        color: $inline-tarea-col;
+    }
+
+    .mat-input-element:disabled {
+        background-color: $inline-tarea-dis-bg;
+        border: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0 0 0 rem-calc(5px);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: $inline-tarea-dis-ac-bg !important;
+    }
+
+    &.edit-mode {
+        .text-field-wrapper {
+            border: $inline-tarea-border;
+            padding: rem-calc(0 5px);
+        }
+    }
+}

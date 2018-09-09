@@ -1,0 +1,46 @@
+﻿<div class="inline-textarea-edit inline-edit"
+     [ngClass]="{ 
+            'active': isEditIcon && !editing, 
+            'edit-mode': editing 
+         }">
+    <div *ngIf="textarea.errors && textarea.dirty">
+        <div class="field-error-text" *ngIf="textarea.errors.required">
+            This field is required.
+        </div>
+        <div class="field-error-text" *ngIf="textarea.errors.minlength">
+            Minimum length is {{minLength}}.
+        </div>
+        <div class="field-error-text" *ngIf="textarea.errors.maxlength">
+            Maximum length is {{maxLength}}.
+        </div>
+    </div>
+    <div (click)="edit(value)"
+         (mouseenter)="showEditIcon()"
+         (mouseleave)="hideEditIcon()"
+         class="textarea-field-wrapper">
+
+        <form #f="ngForm">
+            <textarea 
+                      [(ngModel)]="value" 
+                      [(value)]="textValue" 
+                      matInput (matTextareaAutosize)="editing" 
+                    [(disabled)]="!editing"
+                      name="textarea"
+                        #textarea="ngModel"
+                        required
+                        minlength="{{minLength}}"
+                        maxlength="{{maxLength}}"
+                        spellcheck="false"
+                      >
+            </textarea>
+        </form>
+
+        <div *ngIf="isEditIcon && !editing" class="edit-icon right">
+            <i class="icon-pencil-alt"></i>
+        </div>
+    </div>
+    <div class="control-button" *ngIf="editing">
+        <button class="tick-button primary-btn" mat-button [disabled]="f.invalid" (click)="confirm($event)"><i class="icon-check2"></i></button>
+        <button class="cross-button secondary-btn" mat-button (click)="cancel()"><i class="icon-times"></i></button>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿<div class="inline-select-edit inline-edit">
+    <div 
+        (click)="edit(value)" 
+        (mouseenter)="showEditIcon()" 
+        (mouseleave)="hideEditIcon()" 
+        [ngClass]="{ active:isEditIcon || editing }" 
+        class="select-field-wrapper">
+        <mat-select [ngClass]="{ 'custom-arrow':editing }"  [(value)]="value" [(disabled)]="!editing" panelClass="{{panelClass}}" (selectionChange)="onDropdownChange($event)">
+            <mat-option *ngFor="let selectOption of selectOptions" value="{{selectOption}}">
+                {{selectOptionsMapper[selectOption]}}
+            </mat-option>
+        </mat-select>
+        <div *ngIf="isEditIcon && !editing" class="edit-icon {{editIconPosition}}">
+            <i class="icon-pencil-alt"></i>
+        </div>
+    </div>
+</div>
